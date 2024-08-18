@@ -1,0 +1,147 @@
+{
+    "run_name": "config_02",
+    "data_parameters": {
+        "data_path": "<put-your-local-folder-here>/data",
+        "train_data": {
+            "features_file": "X_train.npy",
+            "label_file": "y_train.npy",
+            "query_file": "q_train.npy",
+            "soft_label_file": "y_train.npy"
+        },
+        "test_data": {
+            "features_file": "X_test.npy",
+            "label_file": "y_test.npy",
+            "query_file": "q_test.npy",
+            "soft_label_file": "y_test.npy"
+        },
+        "vali_data": {
+            "features_file": "X_vali.npy",
+            "label_file": "y_vali.npy",
+            "query_file": "q_vali.npy",
+            "soft_label_file": "y_vali.npy"
+        }
+    },
+    "train_parameters": {
+        "training_epochs": 10,
+        "query_batch_size": 5,
+        "ps_rate": 0.0,
+        "per_query_sample_size": 100
+    },
+    "model_configs": {
+        "alpha": 1.0,
+        "train_label_gain": [
+            0,
+            1,
+            1
+        ],
+        "train_eval_at": [
+            1,
+            3,
+            10,
+            50
+        ],
+        "layers": [
+            {
+                "type": "Linear",
+                "params": {
+                    "in_features": null,
+                    "out_features": 64
+                }
+            },
+            {
+                "type": "Dropout",
+                "params": {
+                    "p": 0.1
+                }
+            },
+            {
+                "type": "ReLU",
+                "params": {}
+            },
+            {
+                "type": "Linear",
+                "params": {
+                    "in_features": 64,
+                    "out_features": 64
+                }
+            },
+            {
+                "type": "Dropout",
+                "params": {
+                    "p": 0.1
+                }
+            },
+            {
+                "type": "ReLU",
+                "params": {}
+            },
+            {
+                "type": "Linear",
+                "params": {
+                    "in_features": 64,
+                    "out_features": 32
+                }
+            },
+            {
+                "type": "Dropout",
+                "params": {
+                    "p": 0.1
+                }
+            },
+            {
+                "type": "ReLU",
+                "params": {}
+            },
+            {
+                "type": "Linear",
+                "params": {
+                    "in_features": 32,
+                    "out_features": 16
+                }
+            },
+            {
+                "type": "Dropout",
+                "params": {
+                    "p": 0.1
+                }
+            },
+            {
+                "type": "ReLU",
+                "params": {}
+            },
+            {
+                "type": "Linear",
+                "params": {
+                    "in_features": 16,
+                    "out_features": 1
+                }
+            }
+        ]
+    },
+    "optimizer_configs": {
+        "type": "Adam",
+        "params": {
+            "lr": 0.0001,
+            "betas": [
+                0.9,
+                0.999
+            ],
+            "eps": 1e-08,
+            "weight_decay": 0.0,
+            "amsgrad": false
+        }
+    },
+    "models_path": "<put-your-local-folder-here>/models",
+    "model_name": "ranker_02",
+    "label_gain": [
+        0,
+        1,
+        1
+    ],
+    "eval_at": [
+        1,
+        3,
+        10,
+        50
+    ]
+}
